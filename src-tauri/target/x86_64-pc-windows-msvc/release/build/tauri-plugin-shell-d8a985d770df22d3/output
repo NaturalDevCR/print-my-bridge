@@ -1,0 +1,11 @@
+cargo:rerun-if-changed=permissions
+cargo:PERMISSION_FILES_PATH=/Users/jdavidoa91/Documents/GitHub/print-my-bridge/src-tauri/target/x86_64-pc-windows-msvc/release/build/tauri-plugin-shell-d8a985d770df22d3/out/tauri-plugin-shell-permission-files
+cargo:rerun-if-env-changed=REMOVE_UNUSED_COMMANDS
+cargo:GLOBAL_SCOPE_SCHEMA_PATH=/Users/jdavidoa91/Documents/GitHub/print-my-bridge/src-tauri/target/x86_64-pc-windows-msvc/release/build/tauri-plugin-shell-d8a985d770df22d3/out/global-scope.json
+cargo:GLOBAL_API_SCRIPT_PATH=/Users/jdavidoa91/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tauri-plugin-shell-2.3.0/api-iife.js
+cargo:rustc-check-cfg=cfg(mobile)
+cargo:rustc-check-cfg=cfg(desktop)
+cargo:rustc-cfg=desktop
+cargo:rustc-check-cfg=cfg(desktop)
+cargo:rustc-cfg=desktop
+cargo:rustc-check-cfg=cfg(mobile)

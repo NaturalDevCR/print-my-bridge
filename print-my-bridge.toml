@@ -1,0 +1,16 @@
+host = "127.0.0.1"
+port = 8765
+allowed_origins = [
+    "http://localhost:3000",
+    "http://localhost:8080",
+    "http://127.0.0.1:3000",
+]
+api_token = "KmWv0HH0MW2Ex9VrmpSiDkddSUk2141K"
+max_file_size_mb = 50
+allowed_file_types = [
+    "pdf",
+    "html",
+    "text",
+    "image",
+]
+rate_limit_per_minute = 60

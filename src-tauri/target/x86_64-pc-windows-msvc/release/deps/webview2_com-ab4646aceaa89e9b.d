@@ -1,0 +1,10 @@
+/Users/jdavidoa91/Documents/GitHub/print-my-bridge/src-tauri/target/x86_64-pc-windows-msvc/release/deps/webview2_com-ab4646aceaa89e9b.d: /Users/jdavidoa91/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/webview2-com-0.38.0/src/lib.rs /Users/jdavidoa91/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/webview2-com-0.38.0/src/callback.rs /Users/jdavidoa91/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/webview2-com-0.38.0/src/options.rs /Users/jdavidoa91/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/webview2-com-0.38.0/src/pwstr.rs
+
+/Users/jdavidoa91/Documents/GitHub/print-my-bridge/src-tauri/target/x86_64-pc-windows-msvc/release/deps/libwebview2_com-ab4646aceaa89e9b.rlib: /Users/jdavidoa91/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/webview2-com-0.38.0/src/lib.rs /Users/jdavidoa91/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/webview2-com-0.38.0/src/callback.rs /Users/jdavidoa91/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/webview2-com-0.38.0/src/options.rs /Users/jdavidoa91/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/webview2-com-0.38.0/src/pwstr.rs
+
+/Users/jdavidoa91/Documents/GitHub/print-my-bridge/src-tauri/target/x86_64-pc-windows-msvc/release/deps/libwebview2_com-ab4646aceaa89e9b.rmeta: /Users/jdavidoa91/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/webview2-com-0.38.0/src/lib.rs /Users/jdavidoa91/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/webview2-com-0.38.0/src/callback.rs /Users/jdavidoa91/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/webview2-com-0.38.0/src/options.rs /Users/jdavidoa91/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/webview2-com-0.38.0/src/pwstr.rs
+
+/Users/jdavidoa91/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/webview2-com-0.38.0/src/lib.rs:
+/Users/jdavidoa91/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/webview2-com-0.38.0/src/callback.rs:
+/Users/jdavidoa91/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/webview2-com-0.38.0/src/options.rs:
+/Users/jdavidoa91/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/webview2-com-0.38.0/src/pwstr.rs:

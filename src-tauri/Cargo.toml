@@ -1,0 +1,55 @@
+[package]
+name = "print-my-bridge"
+version = "0.1.0"
+edition = "2021"
+authors = ["Tu Nombre <tu@email.com>"]
+description = "Universal bridge para imprimir desde aplicaciones web a impresoras locales"
+license = "MIT"
+keywords = ["printing", "bridge", "web", "local-printer", "cross-platform"]
+categories = ["web-programming", "api-bindings"]
+repository = "https://github.com/tu-usuario/print-my-bridge"
+
+[dependencies]
+# Servidor HTTP
+tokio = { version = "1.0", features = ["full"] }
+warp = "0.3"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+
+# Manejo de archivos
+base64 = "0.21"
+tempfile = "3.0"
+
+# Logging
+log = "0.4"
+env_logger = "0.10"
+
+# Manejo de errores
+anyhow = "1.0"
+thiserror = "1.0"
+
+# Cliente HTTP para verificar estado
+reqwest = { version = "0.11", features = ["json"] }
+
+# Configuración
+toml = "0.8"
+
+# Seguridad
+rand = "0.8"
+regex = "1.0"
+
+# GUI con Tauri v2
+tauri = { version = "2.0", features = ["tray-icon"] }
+
+# Plugins de Tauri v2
+tauri-plugin-fs = "2.0"
+tauri-plugin-dialog = "2.0"
+tauri-plugin-notification = "2.0"
+tauri-plugin-clipboard-manager = "2.0"
+tauri-plugin-shell = "2.0"
+
+# Dependencia para auto-inicio
+auto-launch = "0.5"
+
+[build-dependencies]
+tauri-build = { version = "2.0", features = [] }

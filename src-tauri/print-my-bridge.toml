@@ -1,0 +1,14 @@
+host = "127.0.0.1"
+port = 8765
+max_file_size_mb = 50
+rate_limit_per_minute = 60
+api_token = "Ek0jcvRre7ZP44CQs3NKcp16IP3Jvn1U"
+auto_start = false
+minimize_to_tray = true
+allowed_origins = ["*"]
+allowed_file_types = [
+    "pdf",
+    "html",
+    "text",
+    "image",
+]

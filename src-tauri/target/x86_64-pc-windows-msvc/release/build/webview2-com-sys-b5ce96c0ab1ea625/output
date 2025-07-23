@@ -1,0 +1,2 @@
+cargo:rustc-link-search=native=/Users/jdavidoa91/Documents/GitHub/print-my-bridge/src-tauri/target/x86_64-pc-windows-msvc/release/build/webview2-com-sys-b5ce96c0ab1ea625/out/x64
+cargo:rustc-link-lib=advapi32

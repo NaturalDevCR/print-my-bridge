@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Print My Bridge</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div id="app">
+        <h1>🖨️ Print My Bridge</h1>
+        
+        <!-- Tab Navigation -->
+        <div class="tab-container">
+            <div class="tab-nav">
+                <button class="tab-button active" data-tab="main">Main</button>
+                <button class="tab-button" data-tab="advanced">Advanced Options</button>
+            </div>
+            
+            <!-- Main Tab -->
+            <div id="main-tab" class="tab-content active">
+                <div class="status-section">
+                    <h2>Bridge Status</h2>
+                    <div id="status">Checking...</div>
+                </div>
+
+                <div class="token-section">
+                    <h2>Access Token</h2>
+                    <div class="token-display">
+                        <input type="text" id="token" readonly placeholder="Loading token...">
+                        <button id="copy-token">📋 Copy</button>
+                    </div>
+                    <button id="generate-token">🔄 Generate New Token</button>
+                </div>
+            </div>
+            
+            <!-- Advanced Options Tab -->
+            <div id="advanced-tab" class="tab-content">
+                <div class="config-section">
+                    <h2>Server Configuration</h2>
+                    <div class="config-row">
+                        <label>Host: <input type="text" id="host" placeholder="127.0.0.1"></label>
+                    </div>
+                    <div class="config-row">
+                        <label>Port: <input type="number" id="port" min="1024" max="65535" placeholder="8765"></label>
+                    </div>
+                    <div class="config-row">
+                        <label>Max File Size (MB): <input type="number" id="max-file-size" min="1" max="1000" placeholder="50"></label>
+                    </div>
+                    <div class="config-row">
+                        <label>Rate Limit (per minute): <input type="number" id="rate-limit" min="1" max="1000" placeholder="60"></label>
+                    </div>
+                    
+                    <h3>System Options</h3>
+                    <div class="config-row">
+                        <label>
+                            <input type="checkbox" id="auto-start"> Start with system
+                        </label>
+                    </div>
+                    <div class="config-row">
+                        <label>
+                            <input type="checkbox" id="minimize-to-tray"> Minimize to system tray
+                        </label>
+                    </div>
+                    
+                    <button id="save-config">💾 Save Configuration</button>
+                    <p class="config-note">⚠️ Server restart required for changes to take effect</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tauri API Script -->
+    <script src="script.js"></script>
+</body>
+</html>

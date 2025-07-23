@@ -1,0 +1,10 @@
+/Users/jdavidoa91/Documents/GitHub/print-my-bridge/src-tauri/target/x86_64-pc-windows-msvc/release/deps/sha1-b00668a4e9d050fd.d: /Users/jdavidoa91/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/sha1-0.10.6/src/lib.rs /Users/jdavidoa91/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/sha1-0.10.6/src/compress.rs /Users/jdavidoa91/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/sha1-0.10.6/src/compress/soft.rs /Users/jdavidoa91/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/sha1-0.10.6/src/compress/x86.rs
+
+/Users/jdavidoa91/Documents/GitHub/print-my-bridge/src-tauri/target/x86_64-pc-windows-msvc/release/deps/libsha1-b00668a4e9d050fd.rlib: /Users/jdavidoa91/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/sha1-0.10.6/src/lib.rs /Users/jdavidoa91/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/sha1-0.10.6/src/compress.rs /Users/jdavidoa91/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/sha1-0.10.6/src/compress/soft.rs /Users/jdavidoa91/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/sha1-0.10.6/src/compress/x86.rs
+
+/Users/jdavidoa91/Documents/GitHub/print-my-bridge/src-tauri/target/x86_64-pc-windows-msvc/release/deps/libsha1-b00668a4e9d050fd.rmeta: /Users/jdavidoa91/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/sha1-0.10.6/src/lib.rs /Users/jdavidoa91/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/sha1-0.10.6/src/compress.rs /Users/jdavidoa91/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/sha1-0.10.6/src/compress/soft.rs /Users/jdavidoa91/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/sha1-0.10.6/src/compress/x86.rs
+
+/Users/jdavidoa91/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/sha1-0.10.6/src/lib.rs:
+/Users/jdavidoa91/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/sha1-0.10.6/src/compress.rs:
+/Users/jdavidoa91/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/sha1-0.10.6/src/compress/soft.rs:
+/Users/jdavidoa91/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/sha1-0.10.6/src/compress/x86.rs:
