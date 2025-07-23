@@ -37,11 +37,6 @@
         }
       ]
     },
-    "trayIcon": {
-      "iconPath": "icons/icon.png",
-      "iconAsTemplate": true,
-      "menuOnLeftClick": false
-    },
     "windows": [
       {
         "label": "main",
@@ -84,7 +79,14 @@
     "windows": {
       "certificateThumbprint": null,
       "digestAlgorithm": "sha256",
-      "timestampUrl": ""
+      "timestampUrl": "",
+      "webviewInstallMode": {
+        "type": "embedBootstrapper"
+      },
+      "allowDowngrades": true,
+      "wix": {
+        "language": "en-US"
+      }
     }
   },
   "plugins": {}

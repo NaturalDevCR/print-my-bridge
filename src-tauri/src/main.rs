@@ -1,3 +1,6 @@
+// Ocultar consola en Windows para release builds
+#![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
+
 mod api;
 mod printer;
 mod config;
@@ -10,24 +13,23 @@ use tauri::{Manager, WindowEvent, tray::{TrayIconBuilder, TrayIconEvent}, menu::
 
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
-    // Inicializar logging
+    // Inicializar logging solo en debug
+    #[cfg(debug_assertions)]
     env_logger::init();
     
-    // Cargar configuración
-    let config = config::load_config()?;
+    // Cargar configuración de forma asíncrona
+    let config = tokio::task::spawn_blocking(|| config::load_config()).await??;
     
+    #[cfg(debug_assertions)]
     log::info!("🚀 Iniciando Print My Bridge v{}", env!("CARGO_PKG_VERSION"));
-    log::info!("📡 Servidor HTTP en http://{}:{}", config.host, config.port);
     
     // Verificar si se debe ejecutar en modo GUI o headless
     let args: Vec<String> = env::args().collect();
     let headless_mode = args.contains(&"--headless".to_string());
     
     if headless_mode {
-        // Modo headless (solo bridge HTTP)
         start_http_server(config).await?;
     } else {
-        // Modo GUI
         start_gui_app(config).await?;
     }
     
@@ -57,7 +59,7 @@ async fn start_http_server(config: config::Config) -> Result<(), Box<dyn std::er
 async fn start_gui_app(config: config::Config) -> Result<(), Box<dyn std::error::Error>> {
     // Iniciar servidor HTTP en background
     let config_clone = config.clone();
-    let server_handle = tokio::spawn(async move {
+    let _server_handle = tokio::spawn(async move {
         log::info!("🚀 Iniciando servidor HTTP en background...");
         if let Err(e) = start_http_server(config_clone).await {
             log::error!("❌ Error crítico en servidor HTTP: {}", e);
@@ -107,41 +109,44 @@ async fn start_gui_app(config: config::Config) -> Result<(), Box<dyn std::error:
                 .item(&quit)
                 .build()?;
             
-            // Crear tray icon
-            let _tray = TrayIconBuilder::new()
-                .menu(&menu)
-                .icon(app.default_window_icon().unwrap().clone())
-                .on_menu_event(move |app, event| match event.id.as_ref() {
-                    "quit" => {
-                        std::process::exit(0);
-                    }
-                    "show" => {
-                        if let Some(window) = app.get_webview_window("main") {
-                            let _ = window.show();
-                            let _ = window.set_focus();
+            // Crear tray icon SOLO si no existe uno ya
+            if app.tray_by_id("main-tray").is_none() {
+                let _tray = TrayIconBuilder::new()
+                    .menu(&menu)
+                    .icon(app.default_window_icon().unwrap().clone())
+                    .tooltip("Print My Bridge")
+                    .on_menu_event(move |app, event| match event.id.as_ref() {
+                        "quit" => {
+                            app.exit(0);
                         }
-                    }
-                    "hide" => {
-                        if let Some(window) = app.get_webview_window("main") {
-                            let _ = window.hide();
-                        }
-                    }
-                    _ => {}
-                })
-                .on_tray_icon_event(|tray, event| {
-                    if let TrayIconEvent::Click { button: tauri::tray::MouseButton::Left, .. } = event {
-                        let app = tray.app_handle();
-                        if let Some(window) = app.get_webview_window("main") {
-                            if window.is_visible().unwrap_or(false) {
-                                let _ = window.hide();
-                            } else {
+                        "show" => {
+                            if let Some(window) = app.get_webview_window("main") {
                                 let _ = window.show();
                                 let _ = window.set_focus();
                             }
                         }
-                    }
-                })
-                .build(app)?;
+                        "hide" => {
+                            if let Some(window) = app.get_webview_window("main") {
+                                let _ = window.hide();
+                            }
+                        }
+                        _ => {}
+                    })
+                    .on_tray_icon_event(|tray, event| {
+                        if let TrayIconEvent::Click { button: tauri::tray::MouseButton::Left, .. } = event {
+                            let app = tray.app_handle();
+                            if let Some(window) = app.get_webview_window("main") {
+                                if window.is_visible().unwrap_or(false) {
+                                    let _ = window.hide();
+                                } else {
+                                    let _ = window.show();
+                                    let _ = window.set_focus();
+                                }
+                            }
+                        }
+                    })
+                    .build(app)?;
+            }
             
             Ok(())
         })

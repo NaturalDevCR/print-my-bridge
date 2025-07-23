@@ -30,26 +30,88 @@ pub async fn update_config(config: Config) -> Result<(), String> {
 
 #[command]
 pub async fn toggle_auto_start(enable: bool) -> Result<(), String> {
-    handle_auto_start_change(enable).map_err(|e| e.to_string())?;
-    
-    let mut config = crate::config::load_config().map_err(|e| e.to_string())?;
-    config.auto_start = enable;
-    save_config(&config).map_err(|e| e.to_string())
+    match handle_auto_start_change(enable) {
+        Ok(_) => {
+            let mut config = crate::config::load_config().map_err(|e| e.to_string())?;
+            config.auto_start = enable;
+            save_config(&config).map_err(|e| e.to_string())?;
+            Ok(())
+        }
+        Err(e) => {
+            log::error!("Error cambiando auto-start: {}", e);
+            Err(format!("Error al cambiar configuración de auto-inicio: {}", e))
+        }
+    }
 }
 
 fn handle_auto_start_change(enable: bool) -> Result<(), Box<dyn std::error::Error>> {
-    let auto = AutoLaunchBuilder::new()
-        .set_app_name("Print My Bridge")
-        .set_app_path(std::env::current_exe()?.to_str().ok_or("Invalid path")?)
-        .build()?;
-    
-    if enable {
-        auto.enable()?;
-    } else {
-        auto.disable()?;
+    #[cfg(target_os = "windows")]
+    {
+        use std::process::Command;
+        
+        let exe_path = std::env::current_exe()?;
+        let app_name = "Print My Bridge";
+        
+        if enable {
+            // Agregar a auto-inicio usando registro de Windows
+            let output = Command::new("reg")
+                .args([
+                    "add",
+                    "HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Run",
+                    "/v",
+                    app_name,
+                    "/t",
+                    "REG_SZ",
+                    "/d",
+                    &format!("\"{}\"", exe_path.display()),
+                    "/f"
+                ])
+                .output()?;
+                
+            if !output.status.success() {
+                return Err(format!("Failed to enable auto-start: {}", 
+                    String::from_utf8_lossy(&output.stderr)).into());
+            }
+        } else {
+            // Remover de auto-inicio
+            let output = Command::new("reg")
+                .args([
+                    "delete",
+                    "HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Run",
+                    "/v",
+                    app_name,
+                    "/f"
+                ])
+                .output()?;
+                
+            // No es error si la clave no existe
+            if !output.status.success() {
+                let stderr = String::from_utf8_lossy(&output.stderr);
+                if !stderr.contains("The system was unable to find the specified registry key") {
+                    return Err(format!("Failed to disable auto-start: {}", stderr).into());
+                }
+            }
+        }
+        
+        Ok(())
     }
     
-    Ok(())
+    #[cfg(not(target_os = "windows"))]
+    {
+        // Usar auto-launch para otros sistemas operativos
+        let auto = AutoLaunchBuilder::new()
+            .set_app_name("Print My Bridge")
+            .set_app_path(std::env::current_exe()?.to_str().ok_or("Invalid path")?)
+            .build()?;
+        
+        if enable {
+            auto.enable()?;
+        } else {
+            auto.disable()?;
+        }
+        
+        Ok(())
+    }
 }
 
 #[command]

@@ -9,11 +9,18 @@ keywords = ["printing", "bridge", "web", "local-printer", "cross-platform"]
 categories = ["web-programming", "api-bindings"]
 repository = "https://github.com/tu-usuario/print-my-bridge"
 
+# Configuraciones de optimización
+[profile.release]
+opt-level = 3
+lto = true
+codegen-units = 1
+panic = "abort"
+strip = true
+
 [dependencies]
 # Servidor HTTP
 tokio = { version = "1.0", features = ["full"] }
 warp = "0.3"
-serde = { version = "1.0", features = ["derive"] }
 serde_json = "1.0"
 
 # Manejo de archivos
@@ -50,6 +57,11 @@ tauri-plugin-shell = "2.0"
 
 # Dependencia para auto-inicio
 auto-launch = "0.5"
+serde = { version = "1.0.219", features = ["derive"] }
 
 [build-dependencies]
 tauri-build = { version = "2.0", features = [] }
+
+# Configuración específica para Windows
+[target.'cfg(windows)'.dependencies]
+winapi = { version = "0.3", features = ["winuser", "consoleapi", "winreg"] }
